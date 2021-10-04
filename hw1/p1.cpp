@@ -20,11 +20,14 @@ int main(){
           char* day = strtok(date," ");
 
           //prints the current day and the PID 
-        printf ("Current Day of the Week is: %sday\nChild PID: %d\n",day, getpid());
+        printf ("Current Day of the Week is: %sday\nChild PID: %d  Parent PID: %d\n",day, getpid(),getppid());
+        exit(0);
+        printf("Parent PID: %d\n", getpid());
     } else if (i> 0){
       //Parent process
       //prints the shared date & parent pid
-        printf("Current Date: %s Parent PID: %d\n", date, getpid());
+        printf("Current Date: %s\n", date);
+        exit(0);
     }
     //terminate program
     exit(1);
