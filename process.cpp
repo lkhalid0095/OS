@@ -9,9 +9,7 @@ int main(){
 
   using namespace std;
 
-    
     int i=fork();
-    cout << i;
 
     if(i == 0){
 
@@ -19,12 +17,10 @@ int main(){
           char*  date = ctime(&now);
           char* day = strtok(date," ");
 
-        cout << i;
-        printf ("Current Day of the Week is: %sday\nChild Process. PID: %d\n",day, getpid());
+        printf ("Current Day of the Week is: %sday\nChild PID: %d\n",day, getpid());
     }
      
-    else{
-      
-      printf("Parent Process Completed. PID: %d\n",getpid());
+    else if (i> 0){
+      printf("Parent PID: %d\n",getpid());
     }
 }
