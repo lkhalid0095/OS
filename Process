@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <iostream>
+#include <ctime>
+#include <string.h>
+
+int main(){
+
+  using namespace std;
+
+    
+    int i=fork();
+    cout << i;
+
+    if(i == 0){
+
+          time_t now = time(0);
+          char*  date = ctime(&now);
+          char* day = strtok(date," ");
+
+        cout << i;
+        printf ("Current Day of the Week is: %sday\nChild Process. PID: %d\n",day, getpid());
+    }
+     
+    else{
+      
+      printf("Parent Process Completed. PID: %d\n",getpid());
+    }
+}
