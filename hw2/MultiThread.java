@@ -3,6 +3,7 @@ import java.util.*;
 class MultiThread extends Thread {
     private static int THREADCOUNT = 50;
 
+    //runs when thread is started
     public void run() {
         try {
             
@@ -11,7 +12,7 @@ class MultiThread extends Thread {
                 System.out.print("Failed at requesting PID");
             }
             Random rand = new Random();
-            Thread.sleep(rand.nextInt((100 - 49) + 50) + 1);
+            Thread.sleep(rand.nextInt(5000));
             PidManager.releasePID(myPid);
         } catch (Exception e) {
             Thread.currentThread().interrupt();
@@ -31,7 +32,8 @@ class MultiThread extends Thread {
             for (int i = 0; i < count; i++) {
                 Thread t1 = new Thread(new MultiThread());
                 t1.start();
-               
+                Random rand = new Random();
+                Thread.sleep(rand.nextInt(500));
                 
             }
         } catch (Exception e) {
