@@ -6,32 +6,36 @@ class MultiThread extends Thread {
     //runs when thread is started
     public void run() {
         try {
-            
+            //allocate a pid
             int myPid = PidManager.allocatePID();
+            //checks if pid is null
             if (myPid == -1) {
                 System.out.print("Failed at requesting PID");
             }
+            //randomly generates a time for thread to sleep
             Random rand = new Random();
             Thread.sleep(rand.nextInt(5000));
-            PidManager.releasePID(myPid);
+            PidManager.releasePID(myPid); // releases pid
         } catch (Exception e) {
             Thread.currentThread().interrupt();
         }
     }
 
     public static void main(String[] args) {
-        PidManager.allocateMap();
+        PidManager.allocateMap(); //allocates array for pid
         System.out.println("Creating 50 asynchronous threads");
-
+        //calls method
+        //@param sends the threadcount
         createThread(THREADCOUNT);
     }
 
     public static void createThread(int count) {
         try {
-
+            // creates multiple threads in the for loops
             for (int i = 0; i < count; i++) {
                 Thread t1 = new Thread(new MultiThread());
                 t1.start();
+                //for terminal output
                 Random rand = new Random();
                 Thread.sleep(rand.nextInt(500));
                 
