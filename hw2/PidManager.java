@@ -1,45 +1,13 @@
-import java.util.*;
-
-class ThreadPidManager {
-    private static int THREADCOUNT = 0;
-
-    public static void main(String[] args) throws Exception {
-
-        PidManager pid = new PidManager();
-        System.out.println("Creating 50 asynchronous threads");
-        createThread(THREADCOUNT, pid);
-    }
-
-    public static void threadProcess(PidManager pid) throws Exception {
-        int myPid = PidManager.allocatePID();
-        Random rand = new Random();
-        if (myPid == -1) {
-            System.out.println("Failed requesting PID");
-        }
-        Thread.sleep(rand.nextInt());
-
-        PidManager.releasePID(myPid);
-
-    }
-
-    public static void createThread(int count, PidManager manager) throws Exception {
-
-        for (int i = 0; i < count; i++) {
-            Thread currentThread = new Thread(manager);
-            threadProcess(manager);
-            currentThread.start();
-
-            Random rand = new Random();
-            Thread.sleep(rand.nextInt());
-        }
-    }
-
-}
-
-class PidManager implements Runnable {
+/**
+ * PID MANAGER CLASS
+ * Author - Lubna Khalid
+ * HW-2
+ */
+public class PidManager{
     private static final int MIN_PID = 300; // min range
     private static final int MAX_PID = 5000; // max range
     private static int[] pids; // memory location
+
 
     // allocates the array to represents pid
     public static int allocateMap() {
@@ -102,20 +70,4 @@ class PidManager implements Runnable {
         pids[newPid] = 0;
     }
 
-    public static void main(String[] args) {
-
-        
-        PidManager.allocateMap();
-        PidManager.allocatePID();
-        PidManager.allocatePID();
-        PidManager.releasePID(300);
-        PidManager.allocatePID();
-        PidManager.allocatePID();
-    }
-
-    @Override
-    public void run() {
-        // TODO Auto-generated method stub
-
-    }
 }
