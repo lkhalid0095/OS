@@ -1,3 +1,4 @@
+package hw2;
 import java.util.*;
 
 class MultiThread extends Thread {
